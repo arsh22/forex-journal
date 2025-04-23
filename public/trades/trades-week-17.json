@@ -1,0 +1,15 @@
+[
+  {
+    "currency": "GOLD",
+    "tradeType": "Sell",
+    "timeframe": "5min",
+    "description": "I enter in this trade when it get rejection from 50 ema nd short term trend looks down. but it hit my sl nd then gave 1:3",
+    "goodThings": "i found good trade based on 50 ema on 5 minute",
+    "improvements": "i should waut for proper wick rejection candle nd  my SL should be at little gap from 50 ema",
+    "date": "2025-04-22",
+    "entryTime": "17:15",
+    "exitTime": "19:15",
+    "screenshot": "/images/1745380129948.jpg",
+    "createdAt": "2025-04-23T03:48:49.962Z"
+  }
+]

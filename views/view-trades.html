@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Trades - Forex Journal</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="caption"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>My Trades</h1>
+            <a href="/" class="back-btn"><i class="fas fa-arrow-left"></i> Back</a>
+        </header>
+
+        <main>
+            <% if (Object.keys(tradesByWeek).length===0) { %>
+                <div class="no-trades">
+                    <i class="far fa-folder-open fa-3x"></i>
+                    <h3>No trades recorded yet</h3>
+                    <a href="/add-trade" class="btn"><i class="fas fa-plus-circle"></i> Add Your First Trade</a>
+                </div>
+                <% } else { %>
+                    <% for (const week in tradesByWeek) { %>
+                        <div class="week-section">
+                            <h2 class="week-title">Week <%= week %>
+                            </h2>
+                            <div class="trades-grid">
+                                <% tradesByWeek[week].forEach((trade, index)=> { %>
+                                    <div class="trade-card">
+                                        <% if (trade.screenshot) { %>
+                                            <div class="trade-screenshot">
+                                                <img src="<%= trade.screenshot %>" alt="Trade screenshot"
+                                                    class="trade-image">
+                                            </div>
+                                            <% } %>
+                                                <div class="trade-details">
+                                                    <div class="trade-header">
+                                                        <span class="trade-title">
+                                                            <%= trade.currency %>
+                                                        </span>
+                                                        <span class="trade-type <%= trade.tradeType.toLowerCase() %>">
+                                                            <%= trade.tradeType %>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="trade-meta">
+                                                        <span class="trade-meta-item">
+                                                            <i class="far fa-clock"></i>
+                                                            <%= trade.timeframe %>
+                                                        </span>
+                                                        <span class="trade-meta-item">
+                                                            <i class="far fa-calendar"></i>
+                                                            <%= trade.date %>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="trade-timing">
+                                                        <span class="timing-item">
+                                                            <i class="fas fa-sign-in-alt"></i>
+                                                            <%= trade.entryTime %>
+                                                        </span>
+                                                        <span class="timing-item">
+                                                            <i class="fas fa-sign-out-alt"></i>
+                                                            <%= trade.exitTime %>
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="trade-description">
+                                                        <%= trade.description %>
+                                                    </div>
+
+                                                    <div class="review-section">
+                                                        <div class="review-item">
+                                                            <strong><i class="fas fa-thumbs-up"></i> Good:</strong>
+                                                            <%= trade.goodThings %>
+                                                        </div>
+                                                        <div class="review-item">
+                                                            <strong><i class="fas fa-bullseye"></i> Improve:</strong>
+                                                            <%= trade.improvements %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    </div>
+                                    <% }); %>
+                            </div>
+                        </div>
+                        <% } %>
+                            <% } %>
+        </main>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+
+</html>
